@@ -1,0 +1,42 @@
+[
+  {
+    "f": "e:\\campus\\frontend\\src\\pages\\Login.jsx",
+    "mtime": "2026-04-03T05:46:46.382Z"
+  },
+  {
+    "f": "e:\\campus\\frontend\\src\\pages\\StudentDashboard.jsx",
+    "mtime": "2026-04-03T05:46:36.957Z"
+  },
+  {
+    "f": "e:\\campus\\frontend\\src\\pages\\Register.jsx",
+    "mtime": "2026-04-01T17:30:30.151Z"
+  },
+  {
+    "f": "e:\\campus\\frontend\\src\\pages\\AdminDashboard.jsx",
+    "mtime": "2026-04-01T17:05:59.627Z"
+  },
+  {
+    "f": "e:\\campus\\frontend\\src\\pages\\CoordinatorDashboard.jsx",
+    "mtime": "2026-03-25T17:24:48.363Z"
+  },
+  {
+    "f": "e:\\campus\\frontend\\src\\pages\\LandingPage.jsx",
+    "mtime": "2026-03-25T16:42:01.670Z"
+  },
+  {
+    "f": "e:\\campus\\frontend\\src\\App.jsx",
+    "mtime": "2026-03-25T16:41:59.657Z"
+  },
+  {
+    "f": "e:\\campus\\frontend\\src\\services\\api.js",
+    "mtime": "2026-03-25T16:41:33.935Z"
+  },
+  {
+    "f": "e:\\campus\\frontend\\src\\context\\AuthContext.jsx",
+    "mtime": "2026-03-22T18:23:50.273Z"
+  },
+  {
+    "f": "e:\\campus\\frontend\\src\\components\\DashboardLayout.jsx",
+    "mtime": "2026-02-27T17:46:55.606Z"
+  }
+]
