@@ -1,226 +1,317 @@
 # 🎓 Smart Campus Event & Club Management System
 
-A full-stack web application for managing campus events, clubs, and attendance.
+A full-stack MERN application for managing campus events, clubs, registrations, attendance, and announcements with secure JWT authentication.
 
-## Tech Stack
+---
+
+# 🚀 Tech Stack
 
 | Layer | Technology |
-|-------|-----------|
-| Frontend | React 18 + Vite + Tailwind CSS |
-| Backend | Node.js + Express |
-| Database | MySQL |
-| Auth | JWT + bcrypt |
-| QR Codes | qrcode.react + html5-qrcode |
+|--------|------------|
+| Frontend | React 18 + Vite |
+| Styling | Tailwind CSS |
+| Backend | Node.js + Express.js |
+| Database | MongoDB Atlas + Mongoose |
+| Authentication | JWT + bcryptjs |
+| QR Code | qrcode.react + html5-qrcode |
 | Charts | Chart.js + react-chartjs-2 |
+| API | REST API |
 
 ---
 
-## Prerequisites
+# ✨ Features
 
-- **Node.js** v18+ ([nodejs.org](https://nodejs.org))
-- **MySQL** 8+ running locally
-- **npm** (comes with Node.js)
+- JWT Authentication
+- Role-Based Access (Admin, Coordinator, Student)
+- Club Management
+- Event Management
+- Event Registration
+- QR Code Attendance
+- Announcements
+- Analytics Dashboard
+- Secure REST APIs
+- MongoDB Atlas Cloud Database
 
 ---
 
-## Database Setup
+# 📂 Project Structure
 
-1. Start MySQL and create the database:
-```sql
-CREATE DATABASE campus_db;
+```
+Smart-Campus-Event-Club-Management-System
+│
+├── frontend
+│   ├── src
+│   ├── public
+│   ├── package.json
+│   └── vite.config.js
+│
+├── backend
+│   ├── config
+│   ├── controllers
+│   ├── middleware
+│   ├── models
+│   ├── routes
+│   ├── scripts
+│   ├── server.js
+│   ├── package.json
+│   └── vercel.json
+│
+└── README.md
 ```
 
-2. Import the schema:
-```bash
-mysql -u root -p campus_db < e:\campus\backend\schema.sql
+---
+
+# ⚙️ Prerequisites
+
+- Node.js 18+
+- npm
+- MongoDB Atlas Account
+
+---
+
+# 🗄️ MongoDB Setup
+
+Create a free MongoDB Atlas cluster.
+
+Create a database user.
+
+Allow network access.
+
+Copy your MongoDB connection string.
+
+Example:
+
+```
+mongodb+srv://username:password@cluster.mongodb.net/campus_db
 ```
 
 ---
 
-## Backend Setup
+# 🔧 Backend Setup
 
 ```bash
-cd e:\campus\backend
+cd backend
 
-# Install dependencies
 npm install
-
-# Create .env file
-copy .env.example .env
 ```
 
-Edit `e:\campus\backend\.env`:
-```
-PORT=5000
-DB_HOST=localhost
-DB_USER=root
-DB_PASSWORD=your_mysql_password
-DB_NAME=campus_db
-JWT_SECRET=any_long_random_string_here
+Create `.env`
+
+```env
+MONGO_URI=mongodb+srv://username:password@cluster.mongodb.net/campus_db?retryWrites=true&w=majority
+
+JWT_SECRET=your_secret_key
+
 JWT_EXPIRES_IN=7d
 ```
 
-Start the backend:
-```bash
-npm run dev        # development (with nodemon)
-# or
-npm start          # production
-```
+Run Backend
 
-Backend runs at: `http://localhost:5000`
-
----
-
-## Frontend Setup
-
-```bash
-cd e:\campus\frontend
-
-# Install dependencies
-npm install
-
-# Create .env file
-copy .env.example .env
-```
-
-Edit `e:\campus\frontend\.env`:
-```
-VITE_API_URL=http://localhost:5000/api
-```
-
-Start the frontend:
 ```bash
 npm run dev
 ```
 
-Frontend runs at: `http://localhost:5173`
+or
 
----
+```bash
+npm start
+```
 
-## Sample Credentials
-
-| Role | Email | Password |
-|------|-------|----------|
-| Admin | admin@campus.edu | Admin@123 |
-
-> **Note:** The admin password in `schema.sql` uses a bcrypt hash. If login fails, generate a fresh hash:
-> ```bash
-> node -e "const b=require('bcryptjs'); console.log(b.hashSync('Admin@123',10))"
-> ```
-> Then update the users table manually.
-
----
-
-## Role Permissions
-
-| Feature | Admin | Coordinator | Student |
-|---------|-------|-------------|---------|
-| Create/Edit/Delete Events | ✅ | ✅ (own) | ❌ |
-| Create/Manage Clubs | ✅ | ❌ | ❌ |
-| Approve Coordinators | ✅ | ❌ | ❌ |
-| View All Users | ✅ | ❌ | ❌ |
-| Send Announcements | ✅ | ❌ | ❌ |
-| View QR Codes | ❌ | ✅ | ❌ |
-| Scan QR for Attendance | ❌ | ❌ | ✅ |
-| Register for Events | ❌ | ❌ | ✅ |
-| View Analytics | ✅ | ✅ (own) | ❌ |
-
----
-
-## API Endpoints
+Backend
 
 ```
-POST   /api/auth/register
-POST   /api/auth/login
-GET    /api/auth/me
+http://localhost:5000
+```
 
-GET    /api/users         (admin)
-GET    /api/users/stats   (admin)
-PUT    /api/users/:id/approve (admin)
+---
 
-GET    /api/clubs
-POST   /api/clubs         (admin)
-PUT    /api/clubs/:id     (admin)
-DELETE /api/clubs/:id     (admin)
+# 💻 Frontend Setup
 
-GET    /api/events
-GET    /api/events/upcoming
-GET    /api/events/my     (coordinator)
-GET    /api/events/analytics (admin)
-POST   /api/events        (admin/coordinator)
-PUT    /api/events/:id
+```bash
+cd frontend
+
+npm install
+```
+
+Create `.env`
+
+```env
+VITE_API_URL=http://localhost:5000/api
+```
+
+Run
+
+```bash
+npm run dev
+```
+
+Frontend
+
+```
+http://localhost:5173
+```
+
+---
+
+# 🚀 Deployment
+
+## Backend (Vercel)
+
+Environment Variables
+
+```
+MONGO_URI
+
+JWT_SECRET
+
+JWT_EXPIRES_IN
+```
+
+## Frontend (Vercel)
+
+Environment Variable
+
+```
+VITE_API_URL=https://your-backend.vercel.app/api
+```
+
+---
+
+# 🔐 Roles
+
+## Admin
+
+- Manage Users
+- Manage Clubs
+- Manage Events
+- View Analytics
+- Send Announcements
+
+## Coordinator
+
+- Manage Own Events
+- View Attendance
+- Generate QR Codes
+
+## Student
+
+- Register Events
+- Scan QR Attendance
+- View Announcements
+
+---
+
+# 📡 API Routes
+
+Authentication
+
+```
+POST /api/auth/register
+
+POST /api/auth/login
+
+GET /api/auth/me
+```
+
+Users
+
+```
+GET /api/users
+
+GET /api/users/stats
+
+PUT /api/users/:id/approve
+```
+
+Clubs
+
+```
+GET /api/clubs
+
+POST /api/clubs
+
+PUT /api/clubs/:id
+
+DELETE /api/clubs/:id
+```
+
+Events
+
+```
+GET /api/events
+
+GET /api/events/upcoming
+
+GET /api/events/my
+
+GET /api/events/analytics
+
+POST /api/events
+
+PUT /api/events/:id
+
 DELETE /api/events/:id
+```
 
-POST   /api/registrations/register  (student)
-DELETE /api/registrations/cancel    (student)
-GET    /api/registrations/my        (student)
+Registrations
 
-POST   /api/attendance/scan         (student - QR)
-GET    /api/attendance/event/:id    (coordinator/admin)
-GET    /api/attendance/my           (student)
+```
+POST /api/registrations/register
 
-GET    /api/announcements
-POST   /api/announcements  (admin)
+DELETE /api/registrations/cancel
+
+GET /api/registrations/my
+```
+
+Attendance
+
+```
+POST /api/attendance/scan
+
+GET /api/attendance/event/:id
+
+GET /api/attendance/my
+```
+
+Announcements
+
+```
+GET /api/announcements
+
+POST /api/announcements
 ```
 
 ---
 
-## Project Structure
+# 📱 QR Attendance Workflow
 
-```
-e:\campus\
-├── backend\
-│   ├── config\db.js
-│   ├── controllers\
-│   │   ├── authController.js
-│   │   ├── userController.js
-│   │   ├── clubController.js
-│   │   ├── eventController.js
-│   │   ├── registrationController.js
-│   │   └── attendanceController.js
-│   ├── middleware\auth.js
-│   ├── routes\
-│   │   ├── auth.js, users.js, clubs.js
-│   │   ├── events.js, registrations.js
-│   │   └── attendance.js
-│   ├── schema.sql
-│   ├── server.js
-│   └── .env
-│
-└── frontend\
-    └── src\
-        ├── context\AuthContext.jsx
-        ├── services\api.js
-        ├── components\
-        │   ├── Sidebar.jsx
-        │   ├── Modal.jsx
-        │   ├── EventCard.jsx
-        │   └── ProtectedRoute.jsx
-        ├── pages\
-        │   ├── Login.jsx
-        │   ├── Register.jsx
-        │   ├── AdminDashboard.jsx
-        │   ├── CoordinatorDashboard.jsx
-        │   ├── StudentDashboard.jsx
-        │   └── PendingApproval.jsx
-        └── App.jsx
-```
+1. Coordinator creates an event.
+2. QR Code is generated.
+3. Student scans QR.
+4. Backend validates registration.
+5. Attendance is stored in MongoDB.
 
 ---
 
-## QR Attendance Flow
+# 🔒 Security
 
-1. **Coordinator** creates event → unique 64-char hex `qr_token` is auto-generated
-2. **Coordinator** displays the QR code (from dashboard) at the event
-3. **Student** opens the "Scan QR" tab and scans with phone camera
-4. Backend validates the token, checks registration, prevents duplicates
-5. Attendance is saved with `status = 'present'`
+- JWT Authentication
+- Password Hashing (bcryptjs)
+- Helmet
+- Express Mongo Sanitize
+- CORS Protection
 
 ---
 
-## Troubleshooting
+# 👨‍💻 Author
 
-- **CORS errors:** Ensure backend is running on port 5000 and VITE_API_URL is correct
-- **DB connection:** Check `.env` DB credentials and that MySQL service is running
-- **Admin login fails:** Re-generate the bcrypt hash (see Sample Credentials above)
-- **QR scanner not working:** App requires HTTPS or localhost for camera access
+**M. Tirupathi Naidu**
+
+GitHub:
+https://github.com/MTirupathiNaidu
+
+---
+
+# 📄 License
+
+MIT License
